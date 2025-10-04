@@ -678,18 +678,24 @@
         initializeApp();
     });
     </script>
-    <script>
-  // Registrar el service worker para modo offline
+   <script>
+  // Registrar el service worker para modo offline (ruta absoluta + scope para GitHub Pages)
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./service-worker.js')
-        .then(() => console.log('✅ Service Worker registrado con éxito'))
-        .catch(() => console.log('❌ Error al registrar el Service Worker'));
+      const swUrl = '/dashboard-seguro/service-worker.js';
+      navigator.serviceWorker.register(swUrl, { scope: '/dashboard-seguro/' })
+        .then(reg => console.log('✅ SW ok', reg.scope))
+        .catch(err => console.error('❌ SW error', err));
+    });
+  }
+</script>
+
     });
   }
 </script>
 
 </body>
 </html>
+
 
 
